@@ -15,7 +15,7 @@
 
     header {
       background: #393E41;
-      border-bottom: 2px solid #DDB06D;
+      border-bottom: 4px solid #DDB06D;
 
     }
 
@@ -35,38 +35,6 @@
 
 }
 
-
-/* Light mode */
-@media (prefers-color-scheme: light) {
-    blockquote {
-      background: #f9f9f9;
-    }
-
-    a {
-      color: #613DC1;
-    }
-
-    header {
-      background: #613DC1;
-    }
-
-    .article-meta, .menu a {
-      background: #E8DBC5;
-      color: #000;
-    }
-
-    table {
-      margin: auto;
-      border-top: 1px solid #666;
-      border-bottom: 1px solid #666;
-    }
-    table thead th { border-bottom: 1px solid #ddd; }
-    th, td { padding: 5px; }
-    tr:nth-child(even) { background: #eee }
-
-}
-
-
 body {
   max-width: 800px;
   margin: auto;
@@ -78,16 +46,6 @@ h1 {
   line-height: 1.5em;
 }
 
-/* Table of Contents, if wanted
-
-Add to yaml:
-
-output:
-  blogdown::html_page:
-    toc: true
-
-    */
-
 #TableOfContents, #TOC {
   border: 1px solid #eee;
   border-radius: 5px;
@@ -97,9 +55,7 @@ output:
 .menu li { display: inline-block; }
 .article-meta, .menu a {
   text-decoration: none;
-  padding: 5px;
   border-radius: 5px;
-  border-style: dotted;
   border-width: 1px;
   margin-bottom: 20px;
 }
@@ -195,7 +151,7 @@ blockquote {
 }
 
 .content-wrapper {
-  padding: 0px 12px 0px 12px;
+  padding: 20px 12px 0px 12px;
 }
 #foxy {
   min-width: 40px;
@@ -211,5 +167,138 @@ blockquote {
     float: center;
     padding: 10px 10px 10px 20px;
     display: block;
+  }
+}
+
+
+/* added */
+
+/* header */
+
+.header {
+  background-color: #DDB06D;
+  box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+  position: sticky;
+  width: 100%;
+  max-width: 800px;
+}
+
+.header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background-color: black;
+  width: 100%;
+}
+
+
+.header li a:hover,
+.header .menu-btn:hover {
+  background-color: #f4f4f4;
+}
+
+/*
+.header .logo {
+  display: block;
+  float: left;
+  font-size: 2em;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+*/
+
+/* menu */
+
+.header .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height .2s ease-out;
+}
+
+/* menu icon */
+
+.header .menu-icon {
+  cursor: pointer;
+  display: inline-block;
+  float: left;
+  padding: 15px 20px;
+  position: relative;
+  user-select: none;
+}
+
+.header .menu-icon .navicon {
+  background: #333;
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+  background: #333;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+.header .menu-icon .navicon:before {
+  top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+.header .menu-btn {
+  display: none;
+}
+
+.header .menu-btn:checked ~ .menu {
+  max-height: 400px;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+/* 48em = 768px */
+
+@media (min-width: 48em) {
+  .header li {
+	  width: 10%;
+	  display: table-cell;
+	  text-align: center;
+  }
+  .header li a {
+    padding: 5px 5px;
+  }
+  .header .menu {
+    clear: none;
+    float: left;
+    max-height: none;
+  }
+  .header .menu-icon {
+    display: none;
   }
 }
